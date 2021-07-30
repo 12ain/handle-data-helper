@@ -1,0 +1,7 @@
+data
+config
+code.txt
+data.zip
+yarn.lock
+node_modules
+.DS_store

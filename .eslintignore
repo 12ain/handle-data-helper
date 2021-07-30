@@ -1,0 +1,7 @@
+docs/
+node_modules/
+dist/
+.nuxt/
+.nyc_output/
+static/
+plugins/authcode.min.js

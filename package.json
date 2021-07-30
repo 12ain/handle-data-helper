@@ -1,0 +1,20 @@
+{
+  "name": "handle-data-helper",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "clean": "rm -rf data/* && rm -rf code.txt && rm -rf data.zip"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "form-data": "^4.0.0",
+    "qs": "^6.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "eslint-config-rain": "^1.0.0",
+    "prettier": "^2.3.2"
+  }
+}
