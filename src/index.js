@@ -49,7 +49,7 @@ async function downloadFile(url, filepath, name) {
   const response = await axios.get(url, {
     responseType: 'stream'
   });
-  response.data.pipe(writer);
+  await response.data.pipe(writer);
   return new Promise((resolve, reject) => {
     writer.on('finish', resolve);
     writer.on('error', reject);
