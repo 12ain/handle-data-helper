@@ -13,15 +13,16 @@ async function requestID(keyword) {
     data: {
       list: [item]
     }
-  } = await axios.post(`${URL_PERFIX}/merchantsearch.json`, qs.stringify({ merchantName: keyword }), {
-    withCredentials: true,
-    headers: {
-      Cookie: COOKIE,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  console.log(` 🚀开始处理${item.merchant_name} ${item.merchant_id}`);
+  } = await axios
+    .post(`${URL_PERFIX}/merchantsearch.json`, qs.stringify({ merchantName: keyword }), {
+      withCredentials: true,
+      headers: {
+        Cookie: COOKIE,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .catch((e) => console.log(`💊获取 ${keyword} ID错误`));
+  console.log(` 🚀获取到 ${item.merchant_name}的ID为 ${item.merchant_id}`);
   return item.merchant_id;
 }
 
@@ -29,13 +30,15 @@ async function requestID(keyword) {
 async function request(id) {
   const {
     data: { data }
-  } = await axios.get(`${URL_PERFIX}/getEditMerchantInfo.json?merchantId=${id}`, {
-    withCredentials: true,
-    headers: {
-      Cookie: COOKIE
-    }
-  });
-  console.log(`${data.merchantName} 处理完成✨`);
+  } = await axios
+    .get(`${URL_PERFIX}/getEditMerchantInfo.json?merchantId=${id}`, {
+      withCredentials: true,
+      headers: {
+        Cookie: COOKIE
+      }
+    })
+    .catch((e) => console.log(`💊获取数据错误 ${id}`));
+  console.log(`✨${data.merchantName} 处理完成`);
   return data;
 }
 
@@ -76,8 +79,7 @@ async function handle(name) {
 async function main() {
   for (let i = 0; i < arr.length; i += 1) {
     handle(arr[i]);
-    delay(2000);
   }
 }
 
-main();
+main().catch((e) => console.error(e));

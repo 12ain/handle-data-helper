@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
+    "build": "ditto -c -k --sequesterRsrc --keepParent data data.zip",
     "clean": "rm -rf data/* && rm -rf code.txt && rm -rf data.zip"
   },
   "dependencies": {
