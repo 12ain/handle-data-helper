@@ -1,3 +1,7 @@
-const delay = (timeout) => new Promise((resolve) => setTimeout(() => resolve(), timeout));
+const { csv } = require('csvtojson/v2');
 
-module.exports = { delay };
+exports.delay = (timeout) => new Promise((resolve) => setTimeout(() => resolve(), timeout));
+
+exports.csvToJson = async function csvToJson(csvStream) {
+  return csv().fromStream(csvStream);
+};

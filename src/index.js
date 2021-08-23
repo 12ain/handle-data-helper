@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const FormData = require('form-data');
 const qs = require('qs');
-const { arr } = require('../config/data');
 const { delay } = require('./util');
 const { PERFIX, COOKIE, URL_PERFIX } = require('../config');
+const { csvToJson } = require('./util');
 
 // Get ID
 async function requestID(keyword) {
@@ -77,6 +77,9 @@ async function handle(name) {
 
 // main
 async function main() {
+  const file = await fs.createReadStream(path.resolve(__dirname, '../resource/data.csv'));
+  const jsonArray = await csvToJson(file);
+  const arr = jsonArray.map((item) => item.name);
   for (let i = 0; i < arr.length; i += 1) {
     handle(arr[i]);
   }
